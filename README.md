@@ -18,14 +18,10 @@ For the desktop app (Tauri builds):
 - WebView2 Runtime (usually preinstalled on Windows 11):
 	- <https://developer.microsoft.com/microsoft-edge/webview2/>
 
-## 2) Get the code
-
-If you have a zip: unzip to a folder like `C:\Projects\RadAnalysisUI`.
-
-If using Git:
+## 2)Clone the repo
 
 1. Open PowerShell.
-2. Run: `git clone <repo-url>`
+2. Run: `git clone [<repo-url>](https://github.com/MisbahKhan0009/RadAnalysisUI.git)`
 3. `cd RadAnalysisUI`
 
 ## 3) Install dependencies

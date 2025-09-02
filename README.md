@@ -1,38 +1,84 @@
-# RadAnalysis UI – Setup and Run Guide (Windows)
+🧪 RadAnalysis UI • Windows Guide
+=================================
 
-This project is a React + Vite application with a desktop build using Tauri.
+Modern React + Vite app with a lightweight desktop build powered by Tauri.
 
-## 1) Prerequisites
 
-Install these once on your PC:
+Table of Contents
+-----------------
 
-- Node.js 18+ (includes npm): <https://nodejs.org/>
-- Git (optional but recommended): <https://git-scm.com/>
+- 🚀 Quick Start
+- 🧰 Prerequisites
+- 📥 Clone the Repo
+- 📦 Install Dependencies
+- 🌐 Run the Web App
+- 🖥️ Run the Desktop App (Tauri)
+- 🏗️ Build Artifacts
+- 🛠️ Troubleshooting (Windows)
+- 🧪 Scripts Reference
+- 🗂️ Project Structure
+- ⚙️ Customize Tauri
+
+
+🚀 Quick Start
+--------------
+
+1) Install prerequisites (below)  2) Clone  3) Install  4) Run
+
+```powershell
+# 1) Clone
+git clone https://github.com/MisbahKhan0009/RadAnalysisUI.git
+cd RadAnalysisUI
+
+# 2) Install deps
+npm install
+
+# 3) Web dev
+npm run dev
+
+# 4) Desktop dev (Tauri)
+npm run tauri:dev
+```
+
+
+🧰 Prerequisites
+----------------
+
+Install these once on your Windows PC:
+
+- 🟢 Node.js 18+ (includes npm): <https://nodejs.org/>
+- 🧷 Git (optional but recommended): <https://git-scm.com/>
 
 For the desktop app (Tauri builds):
 
-- Rust toolchain (stable): <https://www.rust-lang.org/tools/install>
-- Visual Studio Build Tools with “Desktop development with C++” workload
+- 🦀 Rust toolchain (stable): <https://www.rust-lang.org/tools/install>
+- 🛠️ Visual Studio Build Tools with “Desktop development with C++”
 	- Download: <https://visualstudio.microsoft.com/downloads/>
-	- Open “Installers” > Modify > check “Desktop development with C++” > Install
-- WebView2 Runtime (usually preinstalled on Windows 11):
-	- <https://developer.microsoft.com/microsoft-edge/webview2/>
+	- Visual Studio Installer → Modify → check “Desktop development with C++” → Install
+- 🌐 WebView2 Runtime: <https://developer.microsoft.com/microsoft-edge/webview2/>
 
-## 2)Clone the repo
 
-1. Open PowerShell.
-2. Run: `git clone [<repo-url>](https://github.com/MisbahKhan0009/RadAnalysisUI.git)`
-3. `cd RadAnalysisUI`
+📥 Clone the Repo
+-----------------
 
-## 3) Install dependencies
+Open Windows PowerShell and run:
 
-Open PowerShell in the project folder and run:
+```powershell
+git clone https://github.com/MisbahKhan0009/RadAnalysisUI.git
+cd RadAnalysisUI
+```
+
+
+📦 Install Dependencies
+-----------------------
 
 ```powershell
 npm install
 ```
 
-## 4) Run the web app (browser)
+
+🌐 Run the Web App
+------------------
 
 ```powershell
 npm run dev
@@ -40,7 +86,9 @@ npm run dev
 
 - Then open the printed local URL (typically <http://localhost:5173>) in your browser.
 
-## 5) Run the desktop app (Tauri – dev)
+
+🖥️ Run the Desktop App (Tauri – dev)
+------------------------------------
 
 Runs a native window that hosts the same app with hot reload.
 
@@ -50,10 +98,12 @@ npm run tauri:dev
 
 Notes:
 
-- The first run will compile Rust code; this can take a few minutes.
-- The Tauri window will open automatically. If it’s blank, ensure the dev server (Vite) is running; the script starts it for you.
+- ⏱️ First run compiles Rust; it can take a few minutes.
+- 🪟 The Tauri window opens automatically. If it’s blank, ensure the Vite dev server is running (this script starts it for you).
 
-## 6) Build production artifacts
+
+🏗️ Build Production Artifacts
+-----------------------------
 
 Web build (outputs to `dist/`):
 
@@ -73,25 +123,29 @@ Desktop installers (Tauri bundles):
 npm run tauri:build
 ```
 
-Outputs are placed under `src-tauri/target/` (e.g., an `.msi` or `.exe` for Windows).
+Outputs are placed under `src-tauri/target/` (e.g., `.msi` or `.exe` on Windows).
 
-## 7) Common issues (Windows)
 
-- Rust/Build tools missing
-	- Error mentions `link.exe`/MSVC: install “Desktop development with C++” via Visual Studio Build Tools.
-	- Error about Rust: install Rust from <https://www.rust-lang.org/> and then restart PowerShell.
+🛠️ Troubleshooting (Windows)
+----------------------------
 
-- WebView2 missing
+- 🧩 Rust/MSVC missing
+	- Errors mentioning `link.exe`/MSVC → install “Desktop development with C++” via Visual Studio Build Tools.
+	- No Rust detected → install from <https://www.rust-lang.org/> and restart PowerShell.
+
+- 🌐 WebView2 missing
 	- Install from <https://developer.microsoft.com/microsoft-edge/webview2/>
 
-- Port 5173 already in use
-	- Close other dev servers or change the port in `vite.config.js` and re-run.
+- 🔌 Port 5173 already in use
+	- Close other dev servers, or change the port in `vite.config.js` and re-run.
 
-- Clean rebuild
-	- Delete `node_modules` and run `npm install` again.
-	- For Tauri, you can also remove `src-tauri/target` to force a clean Rust build.
+- 🧹 Clean rebuild
+	- Delete `node_modules` → run `npm install` again.
+	- For Tauri, remove `src-tauri/target` to force a clean Rust build.
 
-## 8) Scripts reference
+
+🧪 Scripts Reference
+--------------------
 
 - `npm run dev` – Start web dev server (Vite)
 - `npm run build` – Build web assets into `dist/`
@@ -99,7 +153,9 @@ Outputs are placed under `src-tauri/target/` (e.g., an `.msi` or `.exe` for Wind
 - `npm run tauri:dev` – Start desktop app (Tauri) in dev mode
 - `npm run tauri:build` – Build desktop installers/bundles (Tauri)
 
-## 9) Project structure (high level)
+
+🗂️ Project Structure
+--------------------
 
 - `src/` – React application source code
 - `src-tauri/` – Tauri (desktop) project: Rust sources and config
@@ -107,4 +163,8 @@ Outputs are placed under `src-tauri/target/` (e.g., an `.msi` or `.exe` for Wind
 - `package.json` – Scripts and dependencies
 - `dist/` – Web production build output (after `npm run build`)
 
-If you need us to customize the app identifier, window title/size, or installer metadata, we can update `src-tauri/tauri.conf.json` for you.
+
+⚙️ Customize Tauri
+------------------
+
+Want a custom app identifier, window title/size, or installer metadata? Update `src-tauri/tauri.conf.json` and rebuild.

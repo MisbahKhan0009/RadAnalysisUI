@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import * as React from "react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Card,
   CardAction,
@@ -11,166 +11,622 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+} from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-export const description = "An interactive area chart"
+export const description = "Medical image analysis activity chart";
 
 const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
-  { date: "2024-04-02", desktop: 97, mobile: 180 },
-  { date: "2024-04-03", desktop: 167, mobile: 120 },
-  { date: "2024-04-04", desktop: 242, mobile: 260 },
-  { date: "2024-04-05", desktop: 373, mobile: 290 },
-  { date: "2024-04-06", desktop: 301, mobile: 340 },
-  { date: "2024-04-07", desktop: 245, mobile: 180 },
-  { date: "2024-04-08", desktop: 409, mobile: 320 },
-  { date: "2024-04-09", desktop: 59, mobile: 110 },
-  { date: "2024-04-10", desktop: 261, mobile: 190 },
-  { date: "2024-04-11", desktop: 327, mobile: 350 },
-  { date: "2024-04-12", desktop: 292, mobile: 210 },
-  { date: "2024-04-13", desktop: 342, mobile: 380 },
-  { date: "2024-04-14", desktop: 137, mobile: 220 },
-  { date: "2024-04-15", desktop: 120, mobile: 170 },
-  { date: "2024-04-16", desktop: 138, mobile: 190 },
-  { date: "2024-04-17", desktop: 446, mobile: 360 },
-  { date: "2024-04-18", desktop: 364, mobile: 410 },
-  { date: "2024-04-19", desktop: 243, mobile: 180 },
-  { date: "2024-04-20", desktop: 89, mobile: 150 },
-  { date: "2024-04-21", desktop: 137, mobile: 200 },
-  { date: "2024-04-22", desktop: 224, mobile: 170 },
-  { date: "2024-04-23", desktop: 138, mobile: 230 },
-  { date: "2024-04-24", desktop: 387, mobile: 290 },
-  { date: "2024-04-25", desktop: 215, mobile: 250 },
-  { date: "2024-04-26", desktop: 75, mobile: 130 },
-  { date: "2024-04-27", desktop: 383, mobile: 420 },
-  { date: "2024-04-28", desktop: 122, mobile: 180 },
-  { date: "2024-04-29", desktop: 315, mobile: 240 },
-  { date: "2024-04-30", desktop: 454, mobile: 380 },
-  { date: "2024-05-01", desktop: 165, mobile: 220 },
-  { date: "2024-05-02", desktop: 293, mobile: 310 },
-  { date: "2024-05-03", desktop: 247, mobile: 190 },
-  { date: "2024-05-04", desktop: 385, mobile: 420 },
-  { date: "2024-05-05", desktop: 481, mobile: 390 },
-  { date: "2024-05-06", desktop: 498, mobile: 520 },
-  { date: "2024-05-07", desktop: 388, mobile: 300 },
-  { date: "2024-05-08", desktop: 149, mobile: 210 },
-  { date: "2024-05-09", desktop: 227, mobile: 180 },
-  { date: "2024-05-10", desktop: 293, mobile: 330 },
-  { date: "2024-05-11", desktop: 335, mobile: 270 },
-  { date: "2024-05-12", desktop: 197, mobile: 240 },
-  { date: "2024-05-13", desktop: 197, mobile: 160 },
-  { date: "2024-05-14", desktop: 448, mobile: 490 },
-  { date: "2024-05-15", desktop: 473, mobile: 380 },
-  { date: "2024-05-16", desktop: 338, mobile: 400 },
-  { date: "2024-05-17", desktop: 499, mobile: 420 },
-  { date: "2024-05-18", desktop: 315, mobile: 350 },
-  { date: "2024-05-19", desktop: 235, mobile: 180 },
-  { date: "2024-05-20", desktop: 177, mobile: 230 },
-  { date: "2024-05-21", desktop: 82, mobile: 140 },
-  { date: "2024-05-22", desktop: 81, mobile: 120 },
-  { date: "2024-05-23", desktop: 252, mobile: 290 },
-  { date: "2024-05-24", desktop: 294, mobile: 220 },
-  { date: "2024-05-25", desktop: 201, mobile: 250 },
-  { date: "2024-05-26", desktop: 213, mobile: 170 },
-  { date: "2024-05-27", desktop: 420, mobile: 460 },
-  { date: "2024-05-28", desktop: 233, mobile: 190 },
-  { date: "2024-05-29", desktop: 78, mobile: 130 },
-  { date: "2024-05-30", desktop: 340, mobile: 280 },
-  { date: "2024-05-31", desktop: 178, mobile: 230 },
-  { date: "2024-06-01", desktop: 178, mobile: 200 },
-  { date: "2024-06-02", desktop: 470, mobile: 410 },
-  { date: "2024-06-03", desktop: 103, mobile: 160 },
-  { date: "2024-06-04", desktop: 439, mobile: 380 },
-  { date: "2024-06-05", desktop: 88, mobile: 140 },
-  { date: "2024-06-06", desktop: 294, mobile: 250 },
-  { date: "2024-06-07", desktop: 323, mobile: 370 },
-  { date: "2024-06-08", desktop: 385, mobile: 320 },
-  { date: "2024-06-09", desktop: 438, mobile: 480 },
-  { date: "2024-06-10", desktop: 155, mobile: 200 },
-  { date: "2024-06-11", desktop: 92, mobile: 150 },
-  { date: "2024-06-12", desktop: 492, mobile: 420 },
-  { date: "2024-06-13", desktop: 81, mobile: 130 },
-  { date: "2024-06-14", desktop: 426, mobile: 380 },
-  { date: "2024-06-15", desktop: 307, mobile: 350 },
-  { date: "2024-06-16", desktop: 371, mobile: 310 },
-  { date: "2024-06-17", desktop: 475, mobile: 520 },
-  { date: "2024-06-18", desktop: 107, mobile: 170 },
-  { date: "2024-06-19", desktop: 341, mobile: 290 },
-  { date: "2024-06-20", desktop: 408, mobile: 450 },
-  { date: "2024-06-21", desktop: 169, mobile: 210 },
-  { date: "2024-06-22", desktop: 317, mobile: 270 },
-  { date: "2024-06-23", desktop: 480, mobile: 530 },
-  { date: "2024-06-24", desktop: 132, mobile: 180 },
-  { date: "2024-06-25", desktop: 141, mobile: 190 },
-  { date: "2024-06-26", desktop: 434, mobile: 380 },
-  { date: "2024-06-27", desktop: 448, mobile: 490 },
-  { date: "2024-06-28", desktop: 149, mobile: 200 },
-  { date: "2024-06-29", desktop: 103, mobile: 160 },
-  { date: "2024-06-30", desktop: 446, mobile: 400 },
-]
+  {
+    date: "2024-04-01",
+    breastSegmentation: 45,
+    cervixSegmentation: 32,
+    brainClassification: 28,
+  },
+  {
+    date: "2024-04-02",
+    breastSegmentation: 38,
+    cervixSegmentation: 29,
+    brainClassification: 35,
+  },
+  {
+    date: "2024-04-03",
+    breastSegmentation: 52,
+    cervixSegmentation: 41,
+    brainClassification: 22,
+  },
+  {
+    date: "2024-04-04",
+    breastSegmentation: 61,
+    cervixSegmentation: 38,
+    brainClassification: 44,
+  },
+  {
+    date: "2024-04-05",
+    breastSegmentation: 73,
+    cervixSegmentation: 55,
+    brainClassification: 39,
+  },
+  {
+    date: "2024-04-06",
+    breastSegmentation: 68,
+    cervixSegmentation: 48,
+    brainClassification: 52,
+  },
+  {
+    date: "2024-04-07",
+    breastSegmentation: 49,
+    cervixSegmentation: 33,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-04-08",
+    breastSegmentation: 82,
+    cervixSegmentation: 61,
+    brainClassification: 47,
+  },
+  {
+    date: "2024-04-09",
+    breastSegmentation: 25,
+    cervixSegmentation: 18,
+    brainClassification: 22,
+  },
+  {
+    date: "2024-04-10",
+    breastSegmentation: 56,
+    cervixSegmentation: 42,
+    brainClassification: 38,
+  },
+  {
+    date: "2024-04-11",
+    breastSegmentation: 69,
+    cervixSegmentation: 58,
+    brainClassification: 49,
+  },
+  {
+    date: "2024-04-12",
+    breastSegmentation: 63,
+    cervixSegmentation: 39,
+    brainClassification: 44,
+  },
+  {
+    date: "2024-04-13",
+    breastSegmentation: 74,
+    cervixSegmentation: 52,
+    brainClassification: 58,
+  },
+  {
+    date: "2024-04-14",
+    breastSegmentation: 41,
+    cervixSegmentation: 28,
+    brainClassification: 35,
+  },
+  {
+    date: "2024-04-15",
+    breastSegmentation: 36,
+    cervixSegmentation: 24,
+    brainClassification: 29,
+  },
+  {
+    date: "2024-04-16",
+    breastSegmentation: 42,
+    cervixSegmentation: 31,
+    brainClassification: 33,
+  },
+  {
+    date: "2024-04-17",
+    breastSegmentation: 89,
+    cervixSegmentation: 67,
+    brainClassification: 54,
+  },
+  {
+    date: "2024-04-18",
+    breastSegmentation: 78,
+    cervixSegmentation: 59,
+    brainClassification: 61,
+  },
+  {
+    date: "2024-04-19",
+    breastSegmentation: 53,
+    cervixSegmentation: 38,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-04-20",
+    breastSegmentation: 28,
+    cervixSegmentation: 19,
+    brainClassification: 25,
+  },
+  {
+    date: "2024-04-21",
+    breastSegmentation: 39,
+    cervixSegmentation: 27,
+    brainClassification: 34,
+  },
+  {
+    date: "2024-04-22",
+    breastSegmentation: 48,
+    cervixSegmentation: 35,
+    brainClassification: 29,
+  },
+  {
+    date: "2024-04-23",
+    breastSegmentation: 41,
+    cervixSegmentation: 29,
+    brainClassification: 38,
+  },
+  {
+    date: "2024-04-24",
+    breastSegmentation: 82,
+    cervixSegmentation: 58,
+    brainClassification: 49,
+  },
+  {
+    date: "2024-04-25",
+    breastSegmentation: 56,
+    cervixSegmentation: 41,
+    brainClassification: 43,
+  },
+  {
+    date: "2024-04-26",
+    breastSegmentation: 23,
+    cervixSegmentation: 16,
+    brainClassification: 21,
+  },
+  {
+    date: "2024-04-27",
+    breastSegmentation: 86,
+    cervixSegmentation: 64,
+    brainClassification: 71,
+  },
+  {
+    date: "2024-04-28",
+    breastSegmentation: 35,
+    cervixSegmentation: 24,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-04-29",
+    breastSegmentation: 67,
+    cervixSegmentation: 48,
+    brainClassification: 41,
+  },
+  {
+    date: "2024-04-30",
+    breastSegmentation: 91,
+    cervixSegmentation: 69,
+    brainClassification: 64,
+  },
+  {
+    date: "2024-05-01",
+    breastSegmentation: 44,
+    cervixSegmentation: 32,
+    brainClassification: 37,
+  },
+  {
+    date: "2024-05-02",
+    breastSegmentation: 71,
+    cervixSegmentation: 52,
+    brainClassification: 46,
+  },
+  {
+    date: "2024-05-03",
+    breastSegmentation: 59,
+    cervixSegmentation: 38,
+    brainClassification: 32,
+  },
+  {
+    date: "2024-05-04",
+    breastSegmentation: 83,
+    cervixSegmentation: 61,
+    brainClassification: 71,
+  },
+  {
+    date: "2024-05-05",
+    breastSegmentation: 96,
+    cervixSegmentation: 74,
+    brainClassification: 66,
+  },
+  {
+    date: "2024-05-06",
+    breastSegmentation: 102,
+    cervixSegmentation: 78,
+    brainClassification: 87,
+  },
+  {
+    date: "2024-05-07",
+    breastSegmentation: 84,
+    cervixSegmentation: 59,
+    brainClassification: 51,
+  },
+  {
+    date: "2024-05-08",
+    breastSegmentation: 42,
+    cervixSegmentation: 28,
+    brainClassification: 36,
+  },
+  {
+    date: "2024-05-09",
+    breastSegmentation: 51,
+    cervixSegmentation: 37,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-05-10",
+    breastSegmentation: 69,
+    cervixSegmentation: 54,
+    brainClassification: 56,
+  },
+  {
+    date: "2024-05-11",
+    breastSegmentation: 73,
+    cervixSegmentation: 51,
+    brainClassification: 46,
+  },
+  {
+    date: "2024-05-12",
+    breastSegmentation: 47,
+    cervixSegmentation: 34,
+    brainClassification: 41,
+  },
+  {
+    date: "2024-05-13",
+    breastSegmentation: 46,
+    cervixSegmentation: 32,
+    brainClassification: 27,
+  },
+  {
+    date: "2024-05-14",
+    breastSegmentation: 94,
+    cervixSegmentation: 72,
+    brainClassification: 83,
+  },
+  {
+    date: "2024-05-15",
+    breastSegmentation: 98,
+    cervixSegmentation: 71,
+    brainClassification: 64,
+  },
+  {
+    date: "2024-05-16",
+    breastSegmentation: 76,
+    cervixSegmentation: 58,
+    brainClassification: 67,
+  },
+  {
+    date: "2024-05-17",
+    breastSegmentation: 104,
+    cervixSegmentation: 79,
+    brainClassification: 71,
+  },
+  {
+    date: "2024-05-18",
+    breastSegmentation: 71,
+    cervixSegmentation: 52,
+    brainClassification: 59,
+  },
+  {
+    date: "2024-05-19",
+    breastSegmentation: 53,
+    cervixSegmentation: 39,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-05-20",
+    breastSegmentation: 43,
+    cervixSegmentation: 29,
+    brainClassification: 39,
+  },
+  {
+    date: "2024-05-21",
+    breastSegmentation: 24,
+    cervixSegmentation: 17,
+    brainClassification: 24,
+  },
+  {
+    date: "2024-05-22",
+    breastSegmentation: 23,
+    cervixSegmentation: 16,
+    brainClassification: 21,
+  },
+  {
+    date: "2024-05-23",
+    breastSegmentation: 58,
+    cervixSegmentation: 42,
+    brainClassification: 49,
+  },
+  {
+    date: "2024-05-24",
+    breastSegmentation: 68,
+    cervixSegmentation: 46,
+    brainClassification: 37,
+  },
+  {
+    date: "2024-05-25",
+    breastSegmentation: 48,
+    cervixSegmentation: 34,
+    brainClassification: 42,
+  },
+  {
+    date: "2024-05-26",
+    breastSegmentation: 49,
+    cervixSegmentation: 35,
+    brainClassification: 29,
+  },
+  {
+    date: "2024-05-27",
+    breastSegmentation: 89,
+    cervixSegmentation: 67,
+    brainClassification: 78,
+  },
+  {
+    date: "2024-05-28",
+    breastSegmentation: 52,
+    cervixSegmentation: 38,
+    brainClassification: 32,
+  },
+  {
+    date: "2024-05-29",
+    breastSegmentation: 22,
+    cervixSegmentation: 15,
+    brainClassification: 22,
+  },
+  {
+    date: "2024-05-30",
+    breastSegmentation: 76,
+    cervixSegmentation: 54,
+    brainClassification: 47,
+  },
+  {
+    date: "2024-05-31",
+    breastSegmentation: 43,
+    cervixSegmentation: 29,
+    brainClassification: 39,
+  },
+  {
+    date: "2024-06-01",
+    breastSegmentation: 44,
+    cervixSegmentation: 31,
+    brainClassification: 34,
+  },
+  {
+    date: "2024-06-02",
+    breastSegmentation: 98,
+    cervixSegmentation: 74,
+    brainClassification: 69,
+  },
+  {
+    date: "2024-06-03",
+    breastSegmentation: 28,
+    cervixSegmentation: 21,
+    brainClassification: 27,
+  },
+  {
+    date: "2024-06-04",
+    breastSegmentation: 92,
+    cervixSegmentation: 68,
+    brainClassification: 64,
+  },
+  {
+    date: "2024-06-05",
+    breastSegmentation: 26,
+    cervixSegmentation: 18,
+    brainClassification: 24,
+  },
+  {
+    date: "2024-06-06",
+    breastSegmentation: 67,
+    cervixSegmentation: 48,
+    brainClassification: 42,
+  },
+  {
+    date: "2024-06-07",
+    breastSegmentation: 73,
+    cervixSegmentation: 55,
+    brainClassification: 62,
+  },
+  {
+    date: "2024-06-08",
+    breastSegmentation: 84,
+    cervixSegmentation: 61,
+    brainClassification: 54,
+  },
+  {
+    date: "2024-06-09",
+    breastSegmentation: 95,
+    cervixSegmentation: 71,
+    brainClassification: 81,
+  },
+  {
+    date: "2024-06-10",
+    breastSegmentation: 38,
+    cervixSegmentation: 27,
+    brainClassification: 34,
+  },
+  {
+    date: "2024-06-11",
+    breastSegmentation: 25,
+    cervixSegmentation: 18,
+    brainClassification: 25,
+  },
+  {
+    date: "2024-06-12",
+    breastSegmentation: 103,
+    cervixSegmentation: 78,
+    brainClassification: 71,
+  },
+  {
+    date: "2024-06-13",
+    breastSegmentation: 23,
+    cervixSegmentation: 16,
+    brainClassification: 22,
+  },
+  {
+    date: "2024-06-14",
+    breastSegmentation: 91,
+    cervixSegmentation: 67,
+    brainClassification: 64,
+  },
+  {
+    date: "2024-06-15",
+    breastSegmentation: 69,
+    cervixSegmentation: 52,
+    brainClassification: 59,
+  },
+  {
+    date: "2024-06-16",
+    breastSegmentation: 82,
+    cervixSegmentation: 58,
+    brainClassification: 52,
+  },
+  {
+    date: "2024-06-17",
+    breastSegmentation: 101,
+    cervixSegmentation: 76,
+    brainClassification: 88,
+  },
+  {
+    date: "2024-06-18",
+    breastSegmentation: 31,
+    cervixSegmentation: 22,
+    brainClassification: 29,
+  },
+  {
+    date: "2024-06-19",
+    breastSegmentation: 76,
+    cervixSegmentation: 54,
+    brainClassification: 49,
+  },
+  {
+    date: "2024-06-20",
+    breastSegmentation: 89,
+    cervixSegmentation: 65,
+    brainClassification: 76,
+  },
+  {
+    date: "2024-06-21",
+    breastSegmentation: 41,
+    cervixSegmentation: 28,
+    brainClassification: 36,
+  },
+  {
+    date: "2024-06-22",
+    breastSegmentation: 71,
+    cervixSegmentation: 49,
+    brainClassification: 46,
+  },
+  {
+    date: "2024-06-23",
+    breastSegmentation: 103,
+    cervixSegmentation: 78,
+    brainClassification: 89,
+  },
+  {
+    date: "2024-06-24",
+    breastSegmentation: 35,
+    cervixSegmentation: 24,
+    brainClassification: 31,
+  },
+  {
+    date: "2024-06-25",
+    breastSegmentation: 37,
+    cervixSegmentation: 26,
+    brainClassification: 32,
+  },
+  {
+    date: "2024-06-26",
+    breastSegmentation: 92,
+    cervixSegmentation: 68,
+    brainClassification: 64,
+  },
+  {
+    date: "2024-06-27",
+    breastSegmentation: 96,
+    cervixSegmentation: 71,
+    brainClassification: 83,
+  },
+  {
+    date: "2024-06-28",
+    breastSegmentation: 38,
+    cervixSegmentation: 27,
+    brainClassification: 34,
+  },
+  {
+    date: "2024-06-29",
+    breastSegmentation: 28,
+    cervixSegmentation: 21,
+    brainClassification: 27,
+  },
+  {
+    date: "2024-06-30",
+    breastSegmentation: 94,
+    cervixSegmentation: 72,
+    brainClassification: 67,
+  },
+];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  analyses: {
+    label: "Total Analyses",
   },
-  desktop: {
-    label: "Desktop",
+  breastSegmentation: {
+    label: "Breast Segmentation",
     color: "var(--primary)",
   },
-  mobile: {
-    label: "Mobile",
-    color: "var(--primary)",
+  cervixSegmentation: {
+    label: "Cervix Segmentation",
+    color: "hsla(0, 0%, 71%, 1.00)",
   },
-} satisfies ChartConfig
+  brainClassification: {
+    label: "Brain CT Classification",
+    color: "hsla(0, 0%, 33%, 1.00)",
+  },
+} satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
-  const isMobile = useIsMobile()
-  const [timeRange, setTimeRange] = React.useState("90d")
+  const isMobile = useIsMobile();
+  const [timeRange, setTimeRange] = React.useState("90d");
 
   React.useEffect(() => {
     if (isMobile) {
-      setTimeRange("7d")
+      setTimeRange("7d");
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
-    let daysToSubtract = 90
+    const date = new Date(item.date);
+    const referenceDate = new Date("2024-06-30");
+    let daysToSubtract = 90;
     if (timeRange === "30d") {
-      daysToSubtract = 30
+      daysToSubtract = 30;
     } else if (timeRange === "7d") {
-      daysToSubtract = 7
+      daysToSubtract = 7;
     }
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
+    const startDate = new Date(referenceDate);
+    startDate.setDate(startDate.getDate() - daysToSubtract);
+    return date >= startDate;
+  });
 
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Total Visitors</CardTitle>
+        <CardTitle>Total Medical Analyses</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            Analysis activity for the last 3 months
           </span>
           <span className="@[540px]/card:hidden">Last 3 months</span>
         </CardDescription>
@@ -215,27 +671,57 @@ export function ChartAreaInteractive() {
         >
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient
+                id="fillBreastSegmentation"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
                 <stop
                   offset="5%"
-                  stopColor="var(--color-desktop)"
-                  stopOpacity={1.0}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-desktop)"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--color-breastSegmentation)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--color-breastSegmentation)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+              <linearGradient
+                id="fillCervixSegmentation"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-cervixSegmentation)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-cervixSegmentation)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+              <linearGradient
+                id="fillBrainClassification"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-brainClassification)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-brainClassification)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
@@ -248,11 +734,11 @@ export function ChartAreaInteractive() {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => {
-                const date = new Date(value)
+                const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
-                })
+                });
               }}
             />
             <ChartTooltip
@@ -263,29 +749,36 @@ export function ChartAreaInteractive() {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
-                    })
+                    });
                   }}
                   indicator="dot"
                 />
               }
             />
             <Area
-              dataKey="mobile"
+              dataKey="breastSegmentation"
               type="natural"
-              fill="url(#fillMobile)"
-              stroke="var(--color-mobile)"
+              fill="url(#fillBreastSegmentation)"
+              stroke="var(--color-breastSegmentation)"
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="cervixSegmentation"
               type="natural"
-              fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
+              fill="url(#fillCervixSegmentation)"
+              stroke="var(--color-cervixSegmentation)"
+              stackId="a"
+            />
+            <Area
+              dataKey="brainClassification"
+              type="natural"
+              fill="url(#fillBrainClassification)"
+              stroke="var(--color-brainClassification)"
               stackId="a"
             />
           </AreaChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

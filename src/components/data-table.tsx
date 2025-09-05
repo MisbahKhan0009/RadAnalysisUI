@@ -552,133 +552,138 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
             Medical image analysis details and results
           </DrawerDescription>
         </DrawerHeader>
-        <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
-          {!isMobile && (
-            <>
-              <ChartContainer config={chartConfig}>
-                <AreaChart
-                  accessibilityLayer
-                  data={chartData}
-                  margin={{
-                    left: 0,
-                    right: 10,
-                  }}
-                >
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    axisLine={false}
-                    tickMargin={8}
-                    tickFormatter={(value) => value.slice(0, 3)}
-                    hide
-                  />
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent indicator="dot" />}
-                  />
-                  <Area
-                    dataKey="mobile"
-                    type="natural"
-                    fill="var(--color-mobile)"
-                    fillOpacity={0.6}
-                    stroke="var(--color-mobile)"
-                    stackId="a"
-                  />
-                  <Area
-                    dataKey="desktop"
-                    type="natural"
-                    fill="var(--color-desktop)"
-                    fillOpacity={0.4}
-                    stroke="var(--color-desktop)"
-                    stackId="a"
-                  />
-                </AreaChart>
-              </ChartContainer>
-              <Separator />
-              <div className="grid gap-2">
-                <div className="flex gap-2 leading-none font-medium">
-                  Trending up by 5.2% this month{" "}
-                  <IconTrendingUp className="size-4" />
+        <div className="flex flex-col gap-6 overflow-y-auto px-4 text-sm">
+          {/* Basic Information */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Patient Information
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Patient ID
+                </Label>
+                <p className="text-base font-medium">{item.patientId}</p>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Analysis Type
+                </Label>
+                <p className="text-base">{item.analysisType}</p>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Hospital
+                </Label>
+                <p className="text-base">{item.hospital}</p>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Analyzed By
+                </Label>
+                <p className="text-base">{item.analyzedBy}</p>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Analysis Date
+                </Label>
+                <p className="text-base">{item.analyzedDate}</p>
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* Medical Images */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Medical Images
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-3">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Original Image
+                </Label>
+                <div className="w-full aspect-square max-w-[256px] mx-auto border rounded-lg overflow-hidden bg-muted">
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    Original Scan
+                  </div>
                 </div>
-                <div className="text-muted-foreground">
-                  Showing total visitors for the last 6 months. This is just
-                  some random text to test the layout. It spans multiple lines
-                  and should wrap around.
+              </div>
+              <div className="flex flex-col gap-3">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Processed Image
+                </Label>
+                <div className="w-full aspect-square max-w-[256px] mx-auto border rounded-lg overflow-hidden bg-muted">
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    Segmented Result
+                  </div>
                 </div>
               </div>
-              <Separator />
-            </>
-          )}
-          <form className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="patientId">Patient ID</Label>
-              <Input id="patientId" defaultValue={item.patientId} />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="analysisType">Analysis Type</Label>
-                <Select defaultValue={item.analysisType}>
-                  <SelectTrigger id="analysisType" className="w-full">
-                    <SelectValue placeholder="Select analysis type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Breast Segmentation">
-                      Breast Segmentation
-                    </SelectItem>
-                    <SelectItem value="Cervix Segmentation">
-                      Cervix Segmentation
-                    </SelectItem>
-                    <SelectItem value="Brain CT Classification">
-                      Brain CT Classification
-                    </SelectItem>
-                    <SelectItem value="Lung Nodule Detection">
-                      Lung Nodule Detection
-                    </SelectItem>
-                    <SelectItem value="Cardiac Analysis">
-                      Cardiac Analysis
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+          </div>
+
+          <Separator />
+
+          {/* Analysis Report */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Analysis Report
+            </h3>
+
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-muted">
+                <span className="font-medium">Mass</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-muted-foreground">Detected</span>
+                  <span className="font-medium">99.0%</span>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center py-2 border-b border-muted">
+                <span className="font-medium">Axilla</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-muted-foreground">Detected</span>
+                  <span className="font-medium">99.0%</span>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center py-2 border-b border-muted">
+                <span className="font-medium">Calcification</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-muted-foreground">Detected</span>
+                  <span className="font-medium">99.0%</span>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center py-2 border-b border-muted">
+                <span className="font-medium">Breast Tissue</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-muted-foreground">Detected</span>
+                  <span className="font-medium">99.0%</span>
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="hospital">Hospital</Label>
-                <Input id="hospital" defaultValue={item.hospital} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="analyzedDate">Analyzed Date</Label>
-                <Input id="analyzedDate" defaultValue={item.analyzedDate} />
+
+            <div className="mt-4 p-4 border rounded-lg bg-muted/30">
+              <div className="flex justify-between items-center">
+                <Label className="text-sm font-medium text-muted-foreground">
+                  Assessment
+                </Label>
+                <span className="font-semibold">BIRADS Category 3</span>
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="analyzedBy">Analyzed By</Label>
-              <Select defaultValue={item.analyzedBy}>
-                <SelectTrigger id="analyzedBy" className="w-full">
-                  <SelectValue placeholder="Select analyst" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Dr. Sarah Chen">Dr. Sarah Chen</SelectItem>
-                  <SelectItem value="Dr. Michael Rodriguez">
-                    Dr. Michael Rodriguez
-                  </SelectItem>
-                  <SelectItem value="Dr. Emily Johnson">
-                    Dr. Emily Johnson
-                  </SelectItem>
-                  <SelectItem value="Dr. James Wilson">
-                    Dr. James Wilson
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </form>
+          </div>
         </div>
         <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose asChild>
-            <Button variant="outline">Done</Button>
-          </DrawerClose>
+          <div className="flex gap-2">
+            <Button className="flex-1">Download</Button>
+            <DrawerClose asChild>
+              <Button variant="outline" className="flex-1">
+                Close
+              </Button>
+            </DrawerClose>
+          </div>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

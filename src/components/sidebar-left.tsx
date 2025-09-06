@@ -193,12 +193,7 @@ export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarContent>
       <SidebarFooter className="flex flex-col gap-2">
         <NavUser user={data.user} />
-        <div className="flex items-center gap-2 px-1">
-          <ThemeToggle />
-          {state === "expanded" && (
-            <span className="text-xs font-medium">{themeLabel} Theme</span>
-          )}
-        </div>
+       
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

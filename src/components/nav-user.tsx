@@ -29,6 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import ThemeToggle from "./ThemeToggle"
 
 export function NavUser({
   user,
@@ -82,8 +83,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                 <ThemeToggle showLabel /> 
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

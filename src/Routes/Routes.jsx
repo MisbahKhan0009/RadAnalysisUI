@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '@/layout/main'
-import Home from '@/Pages/Home'
 import Login from '@/Pages/Login'
 import NotFound from '@/Shared/NotFound'
+import Dashboard from '@/Pages/Dashboard'
 
 // Central route map
 export const router = createBrowserRouter([
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Dashboard /> },
       // Private route examples:
       // { path: 'dashboard', element: <PrivateRoutes><Dashboard /></PrivateRoutes> },
     ],

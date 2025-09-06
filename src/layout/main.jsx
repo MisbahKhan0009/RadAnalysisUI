@@ -1,40 +1,47 @@
-import { Outlet } from 'react-router-dom'
-import { SidebarProvider, Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarInset, SidebarHeader, SidebarFooter, SidebarSeparator } from '@/components/ui/sidebar'
-import Navbar from '@/Shared/Navbar'
-import Footer from '@/Shared/Footer'
-import SidebarNav from '@/components/SidebarNav'
-import sidebarLinks from '@/data/sidebarLinks.json'
-import { SquareActivity } from 'lucide-react'
-
-
-
-import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarLeft } from "@/components/sidebar-left"
+import { SidebarRight } from "@/components/sidebar-right"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
 import {
+  SidebarInset,
+  SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
 export default function Page() {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <SidebarLeft />
       <SidebarInset>
-        <Navbar />
-        <div className="p-4 md:p-6">
-          <Outlet />
+        <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
+          <div className="flex flex-1 items-center gap-2 px-3">
+            <SidebarTrigger />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="line-clamp-1">
+                    Project Management & Task Tracking
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <div className="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" />
+          <div className="bg-muted/50 mx-auto h-[100vh] w-full max-w-3xl rounded-xl" />
         </div>
-        <Footer />
-      
       </SidebarInset>
+      <SidebarRight />
     </SidebarProvider>
   )
 }
-

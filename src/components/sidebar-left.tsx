@@ -17,13 +17,13 @@ import {
 import { NavMain } from "@/components/nav-main"
 
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar, // added
 } from "@/components/ui/sidebar"
 import ThemeToggle from "./ThemeToggle"
 
@@ -157,11 +157,25 @@ const data = {
   ],
 }
 
+// Add emoji toggle component
+function EmojiSidebarToggle() {
+  const { toggleSidebar } = useSidebar()
+  return (
+    <button
+      onClick={toggleSidebar}
+      aria-label="Toggle sidebar"
+      className="text-xl leading-none flex size-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 ring-sidebar-ring transition select-none"
+    >
+      ꕤ
+    </button>
+  )
+}
+
 export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <EmojiSidebarToggle />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
@@ -169,7 +183,7 @@ export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
-      <ThemeToggle />
+        <ThemeToggle />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

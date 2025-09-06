@@ -18,13 +18,12 @@ export default function Page() {
   return (
     <SidebarProvider>
       <SidebarLeft />
-      <SidebarInset>
-        <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
-          <div className="flex flex-1 items-center gap-2 px-3">
-            <SidebarTrigger />
-            
-          </div>
-        </header>
+      <SidebarInset
+        className="
+          transition-[padding] duration-200 ease-linear
+          md:peer-data-[state=collapsed]:px-[calc((var(--sidebar-width)-var(--sidebar-width-icon))/2)]
+        "
+      >
         <div className="flex flex-1 flex-col gap-4 p-4">
           <Outlet />
         </div>

@@ -25,6 +25,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import ThemeToggle from "./ThemeToggle"
 
 // This is sample data.
 const data = {
@@ -168,6 +169,7 @@ export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
+      <ThemeToggle />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

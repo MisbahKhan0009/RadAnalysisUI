@@ -26,6 +26,7 @@ import {
   useSidebar, // added
 } from "@/components/ui/sidebar"
 import ThemeToggle from "./ThemeToggle"
+import useTheme from "@/context/useTheme"
 
 // This is sample data.
 const data = {
@@ -159,19 +160,28 @@ const data = {
 
 // Add emoji toggle component
 function EmojiSidebarToggle() {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar, state } = useSidebar()
   return (
     <button
       onClick={toggleSidebar}
       aria-label="Toggle sidebar"
-      className="text-xl leading-none flex size-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 ring-sidebar-ring transition select-none"
+      className="flex h-8 items-center gap-2 rounded-md px-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 ring-sidebar-ring transition"
     >
-      ꕤ
+      <span className="text-xl leading-none">ꕤ</span>
+      {state === "expanded" && (
+        <span className="text-sm font-semibold tracking-tight">
+          DiagnoTech AI
+        </span>
+      )}
     </button>
   )
 }
 
 export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state } = useSidebar()
+  const { theme } = useTheme()
+  const themeLabel = theme === "dark" ? "Dark" : "Light"
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -181,9 +191,14 @@ export function SidebarLeft({ ...props }: React.ComponentProps<typeof Sidebar>) 
         <NavMain items={data.navMain} />
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="flex flex-col gap-2">
         <NavUser user={data.user} />
-        <ThemeToggle />
+        <div className="flex items-center gap-2 px-1">
+          <ThemeToggle />
+          {state === "expanded" && (
+            <span className="text-xs font-medium">{themeLabel} Theme</span>
+          )}
+        </div>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

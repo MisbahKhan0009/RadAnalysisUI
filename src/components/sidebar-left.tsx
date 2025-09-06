@@ -165,7 +165,7 @@ function EmojiSidebarToggle() {
     <button
       onClick={toggleSidebar}
       aria-label="Toggle sidebar"
-      className="flex h-8 items-center gap-2 rounded-md px-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 ring-sidebar-ring transition"
+      className="flex h-8 items-center gap-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 ring-sidebar-ring transition"
     >
       <span className="text-xl leading-none">ꕤ</span>
       {state === "expanded" && (

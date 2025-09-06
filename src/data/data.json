@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "patientId": "PT-2024-001",
+    "analysisType": "Breast Segmentation",
+    "hospital": "City General Hospital",
+    "analyzedBy": "Dr. Sarah Chen",
+    "analyzedDate": "2024-08-15"
+  },
+  {
+    "id": 2,
+    "patientId": "PT-2024-002",
+    "analysisType": "Cervix Segmentation",
+    "hospital": "Metro Medical Center",
+    "analyzedBy": "Dr. Michael Rodriguez",
+    "analyzedDate": "2024-08-14"
+  },
+  {
+    "id": 3,
+    "patientId": "PT-2024-003",
+    "analysisType": "Brain CT Classification",
+    "hospital": "University Hospital",
+    "analyzedBy": "Dr. Emily Johnson",
+    "analyzedDate": "2024-08-16"
+  },
+  {
+    "id": 4,
+    "patientId": "PT-2024-004",
+    "analysisType": "Breast Segmentation",
+    "hospital": "Regional Medical Center",
+    "analyzedBy": "Dr. James Wilson",
+    "analyzedDate": "2024-08-13"
+  },
+  {
+    "id": 5,
+    "patientId": "PT-2024-005",
+    "analysisType": "Cervix Segmentation",
+    "hospital": "St. Mary's Hospital",
+    "analyzedBy": "Dr. Sarah Chen",
+    "analyzedDate": "2024-08-17"
+  },
+  {
+    "id": 6,
+    "patientId": "PT-2024-006",
+    "analysisType": "Brain CT Classification",
+    "hospital": "Downtown Clinic",
+    "analyzedBy": "Dr. Michael Rodriguez",
+    "analyzedDate": "2024-08-18"
+  },
+  {
+    "id": 7,
+    "patientId": "PT-2024-007",
+    "analysisType": "Breast Segmentation",
+    "hospital": "Memorial Hospital",
+    "analyzedBy": "Dr. Michael Rodriguez",
+    "analyzedDate": "2024-08-12"
+  },
+  {
+    "id": 8,
+    "patientId": "PT-2024-008",
+    "analysisType": "Cervix Segmentation",
+    "hospital": "Central Medical",
+    "analyzedBy": "Dr. Emily Johnson",
+    "analyzedDate": "2024-08-11"
+  },
+  {
+    "id": 9,
+    "patientId": "PT-2024-009",
+    "analysisType": "Brain CT Classification",
+    "hospital": "City General Hospital",
+    "analyzedBy": "Dr. James Wilson",
+    "analyzedDate": "2024-08-10"
+  },
+  {
+    "id": 10,
+    "patientId": "PT-2024-010",
+    "analysisType": "Breast Segmentation",
+    "hospital": "Metro Medical Center",
+    "analyzedBy": "Dr. Sarah Chen",
+    "analyzedDate": "2024-08-18"
+  },
+  {
+    "id": 11,
+    "patientId": "PT-2024-011",
+    "analysisType": "Cervix Segmentation",
+    "hospital": "University Hospital",
+    "analyzedBy": "Dr. Michael Rodriguez",
+    "analyzedDate": "2024-08-09"
+  },
+  {
+    "id": 12,
+    "patientId": "PT-2024-012",
+    "analysisType": "Brain CT Classification",
+    "hospital": "Regional Medical Center",
+    "analyzedBy": "Dr. Emily Johnson",
+    "analyzedDate": "2024-08-19"
+  },
+  {
+    "id": 13,
+    "patientId": "PT-2024-013",
+    "analysisType": "Breast Segmentation",
+    "hospital": "St. Mary's Hospital",
+    "analyzedBy": "Dr. Emily Johnson",
+    "analyzedDate": "2024-08-08"
+  },
+  {
+    "id": 14,
+    "patientId": "PT-2024-014",
+    "analysisType": "Cervix Segmentation",
+    "hospital": "Downtown Clinic",
+    "analyzedBy": "Dr. James Wilson",
+    "analyzedDate": "2024-08-19"
+  },
+  {
+    "id": 15,
+    "patientId": "PT-2024-015",
+    "analysisType": "Brain CT Classification",
+    "hospital": "Memorial Hospital",
+    "analyzedBy": "Dr. Sarah Chen",
+    "analyzedDate": "2024-08-07"
+  }
+]
